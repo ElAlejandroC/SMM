@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa María de los Manantiales | México Desconocido</title>
+    <style>
+        :root {
+            --primary-color: #214478;
+            --secondary-color: #3d7ea6;
+            --accent-color: #a68f58;
+            --text-color: #333;
+            --light-color: #f5f5f5;
+            --water-color: rgba(61, 126, 166, 0.8);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            background-image: url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(245, 245, 245, 0.9);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .water-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: var(--water-color);
+            opacity: 0.7;
+            transform-origin: bottom;
+            animation: water-move 10s ease-in-out infinite;
+        }
+        
+        @keyframes water-move {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.2); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .publication-info {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            background-color: #e0e0e0;
+        }
+        
+        .image-container:hover .main-image {
+            transform: scale(1.05);
+        }
+        
+        .caption {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .image-placeholder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #e0e0e0;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed #999;
+        }
+        
+        .image-placeholder p {
+            margin: 5px 0;
+            text-align: center;
+        }
+        
+        .image-placeholder .dimensions {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .info-box {
+            background-color: rgba(33, 68, 120, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .footer-links {
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .two-column {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Efecto de agua para las imágenes */
+        .water-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .water-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(61, 126, 166, 0.3);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .water-effect:hover::after {
+            opacity: 1;
+        }
+        
+        /* Botón interactivo para elemento ARG */
+        .secret-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0;
+            z-index: 10;
+        }
+        
+        .floating-image {
+            position: relative;
+            animation: floating 4s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="water-overlay"></div>
+        <div class="header-content container">
+            <h1>Santa María de los Manantiales</h1>
+            <p class="subtitle">El milagro que vive bajo las aguas</p>
+            <p class="publication-info">Por La Tonázca Olvidada | Abril 2025</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section>
+            <p>En el corazón del Estado de Zonas Bajas, bajo las ahora menguantes aguas de la Presa de los Manantiales, descansa un tesoro histórico poco conocido pero fascinante: Santa María de los Manantiales. Este pueblo sumergido cuenta una historia donde se entrelazan la conquista, las tradiciones indígenas, la fe católica y el inevitable avance del desarrollo moderno que finalmente lo condenó a desaparecer bajo las aguas.</p>
+            
+            <div class="image-container">
+                <div class="image-placeholder main-image">
+                    <p class="dimensions">IMAGEN PANORÁMICA PRINCIPAL</p>
+                    <p>Dimensiones: 1200px × 400px</p>
+                    <p>Sugerencia: Vista aérea de la Presa de los Manantiales con el campanario emergiendo</p>
+                </div>
+                <div class="caption">El campanario del Templo de Nuestra Señora de las Aguas emerge durante la actual sequía que ha reducido la presa al 23% de su capacidad.</div>
+                <button class="secret-button" id="secretButton1" style="bottom: 10px; right: 10px;"></button>
+            </div>
+            
+            <h2>Orígenes prehispánicos y fundación colonial</h2>
+            <p>Mucho antes de la llegada de los españoles, este valle ya era considerado un sitio sagrado por los pueblos purépechas. Lo denominaban "Tzacapu Hamúcutin" (Lugar de aguas sagradas), un espacio ceremonial dedicado principalmente al culto de Cuerauáperi, deidad purépecha asociada con la fertilidad y el agua.</p>
+            
+            <p>La fundación oficial de Santa María de los Manantiales ocurrió en 1682, cuando el conquistador español Simón Pedro de Villaseñor y Mendoza estableció el asentamiento tras someter a los purépechas de la región. Las crónicas relatan que Villaseñor quedó maravillado por los doce manantiales perpetuos que brotaban en el valle, rodeados por trece cerros que parecían custodiarlos. Interpretó esta configuración como una señal divina que representaba a los doce apóstoles, y esta interpretación religiosa marcaría profundamente el diseño urbano y la vida espiritual del pueblo durante siglos.</p>
+            
+            <div class="two-column">
+                <div class="column">
+                    <div class="image-container water-effect">
+                        <div class="image-placeholder main-image">
+                            <p class="dimensions">IMAGEN MEDIA</p>
+                            <p>Dimensiones: 500px × 300px</p>
+                            <p>Sugerencia: Recreación artística de los doce manantiales originales</p>
+                        </div>
+                        <div class="caption">Recreación artística de los doce manantiales originales.</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="image-container water-effect">
+                        <div class="image-placeholder main-image">
+                            <p class="dimensions">IMAGEN MEDIA</p>
+                            <p>Dimensiones: 500px × 300px</p>
+                            <p>Sugerencia: Mapa antiguo de Santa María de los Manantiales del siglo XVIII</p>
+                        </div>
+                        <div class="caption">Mapa antiguo de Santa María de los Manantiales (1732).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>El milagro del decimotercer manantial</h2>
+            <p>Lo que verdaderamente consolidó la fama espiritual de Santa María ocurrió durante la devastadora sequía de 1733. Cuando los doce manantiales perpetuos comenzaron a menguar y la desesperación cundía entre los pobladores, un fenómeno inexplicable ocurrió: en el punto más árido del valle, donde nunca antes había existido agua, brotó un decimotercer manantial, abundante y cristalino.</p>
+            
+            <div class="image-container">
+                <div class="image-placeholder main-image">
+                    <p class="dimensions">IMAGEN PANORÁMICA</p>
+                    <p>Dimensiones: 1200px × 400px</p>
+                    <p>Sugerencia: Ilustración del descubrimiento del decimotercer manantial</p>
+                </div>
+                <div class="caption">Ilustración basada en los relatos históricos del descubrimiento del decimotercer manantial.</div>
+            </div>
+            
+            <p>Según las crónicas de la época, fue una niña indígena quien descubrió este nuevo manantial y, flotando milagrosamente sobre sus aguas, encontró una pequeña talla de madera de la Virgen María, de apenas 31 centímetros de altura. La imagen, tallada en madera de mezquite y con rasgos mestizos, fue considerada doblemente milagrosa: primero, por aparecer en un manantial surgido en tiempos de extrema necesidad, y segundo, por encontrarse completamente seca pese a estar flotando sobre el agua.</p>
+            
+            <p>Los pobladores interpretaron este acontecimiento como un milagro divino. Para los españoles y criollos, representaba a María, madre de Cristo, completando el simbolismo de los doce apóstoles. Para los indígenas purépechas, era una manifestación de Cuerauáperi, su diosa de las aguas.</p>
+            
+            <div class="image-container floating-image">
+                <div class="image-placeholder main-image" style="height: 500px;">
+                    <p class="dimensions">IMAGEN VERTICAL</p>
+                    <p>Dimensiones: 400px × 500px</p>
+                    <p>Sugerencia: Recreación de la imagen de la Virgen de las Aguas</p>
+                    <p>Esta imagen tiene efecto de flotación</p>
+                </div>
+                <div class="caption">Recreación artística de la imagen de Nuestra Señora de las Aguas, basada en descripciones históricas.</div>
+                <button class="secret-button" id="secretButton2" style="top: 50%; left: 50%;"></button>
+            </div>
+            
+            <h2>El majestuoso Templo de Nuestra Señora de las Aguas</h2>
+            <p>Tras este milagro, se decidió construir un templo para honrar a la Virgen, precisamente en el sitio donde brotó el decimotercer manantial. El Templo de Nuestra Señora de las Aguas, construido entre 1740 y 1802, se convirtió en un impresionante ejemplo de barroco sobrio con elementos neoclásicos, edificado en cantera gris-azulada extraída de canteras locales.</p>
+            
+            <p>La pequeña imagen milagrosa se convirtió en el centro de una fervorosa devoción que atraía peregrinos de toda la región. Según los relatos locales, la Virgen de las Aguas protegía a los pescadores y agricultores, y su manantial nunca volvió a secarse, incluso durante las peores sequías que golpearon la región en siglos posteriores.</p>
+            
+            <div class="two-column">
+                <div class="column">
+                    <div class="image-container water-effect">
+                        <div class="image-placeholder main-image">
+                            <p class="dimensions">IMAGEN MEDIA</p>
+                            <p>Dimensiones: 500px × 300px</p>
+                            <p>Sugerencia: Planos originales del Templo</p>
+                        </div>
+                        <div class="caption">Planos originales del Templo de Nuestra Señora de las Aguas (1739).</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="image-container water-effect">
+                        <div class="image-placeholder main-image">
+                            <p class="dimensions">IMAGEN MEDIA</p>
+                            <p>Dimensiones: 500px × 300px</p>
+                            <p>Sugerencia: Fotografía del Templo antes de la inundación</p>
+                        </div>
+                        <div class="caption">Fotografía de archivo del Templo antes de la inundación (1965).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Una particularidad del templo era su diseño hidráulico: fue construido de manera que el decimotercer manantial fluía directamente bajo el altar mayor, con pequeños canales que llevaban el agua sagrada hasta una fuente exterior donde los peregrinos podían recogerla para llevarla consigo como remedio para enfermedades y bendición para sus hogares.</p>
+            
+            <div class="info-box">
+                <h3>Datos arquitectónicos del Templo</h3>
+                <ul>
+                    <li>Estilo: Barroco sobrio con elementos neoclásicos</li>
+                    <li>Material principal: Cantera gris-azulada local</li>
+                    <li>Altura de la torre campanario: 32 metros</li>
+                    <li>Diámetro de la cúpula: 15 metros</li>
+                    <li>Característica única: Sistema hidráulico que integraba el decimotercer manantial</li>
+                </ul>
+            </div>
+            
+            <h2>El sacrificio por el progreso</h2>
+            <p>A mediados del siglo XX, Santa María de los Manantiales fue sacrificada en aras del desarrollo regional. En la década de 1960, el gobierno federal decidió construir la Presa de los Manantiales para generar electricidad y abastecer de agua a las crecientes zonas urbanas e industriales de las tres grandes ciudades aledañas: Arandas de Santiago, Ciudad Cajeta e Itzpato.</p>
+            
+            <div class="image-container">
+                <div class="image-placeholder main-image">
+                    <p class="dimensions">IMAGEN PANORÁMICA</p>
+                    <p>Dimensiones: 1200px × 400px</p>
+                    <p>Sugerencia: Protestas de los habitantes contra la construcción de la presa</p>
+                </div>
+                <div class="caption">Habitantes de Santa María protestan contra la construcción de la presa (1967).</div>
+            </div>
+            
+            <p>A pesar de la férrea resistencia de sus habitantes, quienes mantuvieron una lucha legal y pacífica durante años, el pueblo fue finalmente evacuado en 1968 y posteriormente inundado al cerrarse las compuertas de la presa en 1970. Como último acto de resistencia, los pobladores intentaron llevarse consigo la imagen milagrosa de la Virgen, pero según cuenta la leyenda, la pequeña talla se volvió inexplicablemente pesada y fue imposible moverla de su altar. Finalmente, quedó sumergida junto con el templo.</p>
+            
+            <div class="two-column">
+                <div class="column">
+                    <div class="image-container water-effect">
+                        <div class="image-placeholder main-image">
+                            <p class="dimensions">IMAGEN MEDIA</p>
+                            <p>Dimensiones: 500px × 300px</p>
+                            <p>Sugerencia: La inundación de Santa María</p>
+                        </div>
+                        <div class="caption">La inundación de Santa María de los Manantiales (1970).</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="image-container water-effect">
+                        <div class="image-placeholder main-image">
+                            <p class="dimensions">IMAGEN MEDIA</p>
+                            <p>Dimensiones: 500px × 300px</p>
+                            <p>Sugerencia: Fotografía aérea de la nueva Presa</p>
+                        </div>
+                        <div class="caption">Fotografía aérea de la recién completada Presa de los Manantiales (1971).</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Un legado que emerge de las aguas</h2>
+            <p>Hoy, Santa María de los Manantiales vive en la memoria colectiva de sus descendientes, dispersos en comunidades cercanas, pero todavía unidos por el recuerdo de su tierra natal. En este 2025, con la presa alcanzando apenas un miserable 23% de su capacidad debido a la sequía que azota la región, han emergido de las aguas no solo el campanario y la cúpula, sino gran parte del Templo de Nuestra Señora de las Aguas, como un recordatorio fantasmal de lo que una vez fue un próspero pueblo.</p>
+            
+            <div class="image-container">
+                <div class="image-placeholder main-image">
+                    <p class="dimensions">IMAGEN PANORÁMICA</p>
+                    <p>Dimensiones: 1200px × 400px</p>
+                    <p>Sugerencia: Vista actual del templo emergiendo de las aguas</p>
+                </div>
+                <div class="caption">Vista actual del templo emergiendo de las aguas debido a la histórica sequía (Abril 2025).</div>
+                <button class="secret-button" id="secretButton3" style="top: 20px; left: 30px;"></button>
+            </div>
+            
+            <p>Un fenómeno que ha desconcertado a ingenieros y científicos es que, durante estas sequías extremas, cuando el templo queda parcialmente expuesto, se ha documentado que el decimotercer manantial continúa brotando milagrosamente bajo el altar mayor, a pesar de haber estado normalmente sumergido bajo metros de agua de la presa. Los descendientes de los habitantes originales interpretan esto como una señal de que la bendición de la Virgen sigue vigente, y muchos ven en la actual sequía un mensaje divino sobre el uso irresponsable de los recursos hídricos.</p>
+            
+            <p>Este fenómeno se ha convertido en un importante atractivo turístico y en motivo de peregrinación para los descendientes de los habitantes originales, quienes aprovechan esta rara oportunidad para visitar su pueblo ancestral y realizar ceremonias conmemorativas. Las autoridades del Estado de Zonas Bajas, preocupadas por la crítica situación de la presa que apenas puede abastecer a las tres grandes ciudades dependientes de ella, observan con inquietud el creciente interés en estos vestigios sumergidos.</p>
+            
+            <div class="info-box">
+                <h3>Crisis hídrica en el Estado de Zonas Bajas</h3>
+                <p>La actual sequía ha reducido la Presa de los Manantiales a solo un 23% de su capacidad, poniendo en riesgo el abastecimiento de agua potable para:</p>
+                <ul>
+                    <li>Arandas de Santiago: 1.2 millones de habitantes</li>
+                    <li>Ciudad Cajeta: 950,000 habitantes</li>
+                    <li>Itzpato: 780,000 habitantes</li>
+                </ul>
+                <p>Las autoridades ya han implementado cortes programados del suministro y restricciones para uso industrial.</p>
+            </div>
+            
+            <p>Los restos del templo y las estructuras de la plaza principal han sido declarados Patrimonio Cultural Subacuático por el INAH, que monitorea y estudia este importante sitio histórico. Arqueólogos subacuáticos han documentado tanto los elementos coloniales como los vestigios prehispánicos que descansan bajo las aguas de la presa.</p>
+            
+            <p>Santa María de los Manantiales nos recuerda que bajo muchos de nuestros embalses y presas no solo hay agua, sino también historias, tradiciones y memorias colectivas que, como su milagrosa virgen, se resisten a hundirse en el olvido. Y ahora, mientras la sequía expone cada vez más sus secretos, muchos se preguntan si el decimotercer manantial, que nunca ha dejado de fluir, tendrá algo que ver con lo que está por venir.</p>
+            
+            <div class="image-container">
+                <div class="image-placeholder main-image">
+                    <p class="dimensions">IMAGEN PANORÁMICA FINAL</p>
+                    <p>Dimensiones: 1200px × 400px</p>
+                    <p>Sugerencia: Peregrinos visitando los restos emergidos del templo</p>
+                </div>
+                <div class="caption">Peregrinos visitando los restos emergidos del templo durante la actual sequía (Marzo 2025).</div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 México Desconocido</p>
+            <div class="footer-links">
+                <a href="#">Explorar más artículos</a> | 
+                <a href="#">Suscribirse</a> | 
+                <a href="#">Sitios sumergidos de México</a> | 
+                <a href="#">Contacto</a>
+            </div>
+            <button class="secret-button" id="secretButton4" style="bottom: 50%; right: 50%;"></button>
+        </div>
+    </footer>
+    
+    <script>
+        // Efecto de parallax para el fondo
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            document.body.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+        });
+        
+        // Elementos secretos para el ARG
+        const secretButtons = document.querySelectorAll('.secret-button');
+        
+        secretButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                const buttonId = e.target.id;
+                
+                // Diferentes acciones dependiendo del botón secreto
+                switch(buttonId) {
+                    case 'secretButton1':
+                        revealSecret('¿Has visto las marcas en el campanario?');
+                        break;
+                    case 'secretButton2':
+                        revealSecret('La Virgen sigue llorando bajo el agua...');
+                        break;
+                    case 'secretButton3':
+                        revealSecret('13/13/13 - La fecha se acerca');
+                        break;
+                    case 'secretButton4':
+                        window.location.href = '#'; // Podría redirigir a otra página del ARG
+                        break;
+                }
+            });
+        });
+        
+        function revealSecret(message) {
+            const secretDiv = document.createElement('div');
+            secretDiv.style.position = 'fixed';
+            secretDiv.style.bottom = '20px';
+            secretDiv.style.right = '20px';
+            secretDiv.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            secretDiv.style.color = 'white';
+            secretDiv.style.padding = '15px';
+            secretDiv.style.borderRadius = '5px';
+            secretDiv.style.zIndex = '1000';
+            secretDiv.textContent = message;
+            
+            document.body.appendChild(secretDiv);
+            
+            setTimeout(() => {
+                secretDiv.style.opacity = '0';
+                secretDiv.style.transition = 'opacity 1s ease';
+                
+                setTimeout(() => {
+                    document.body.removeChild(secretDiv);
+                }, 1000);
+            }, 3000);
+        }
+        
+        // Efecto de flotamiento para imágenes que emergen del agua
+        const waterEffectImages = document.querySelectorAll('.water-effect');
+        
+        waterEffectImages.forEach(image => {
+            image.addEventListener('mouseenter', function() {
+                const caption = this.querySelector('.caption');
+                if (caption) {
+                    caption.style.transform = 'translateY(-10px)';
+                    caption.style.transition = 'transform 0.5s ease';
+                }
+            });
+            
+            image.addEventListener('mouseleave', function() {
+                const caption = this.querySelector('.caption');
+                if (caption) {
+                    caption.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // Easter egg: Conteo regresivo misterioso
+        const currentDate = new Date();
+        const targetDate = new Date(currentDate.getFullYear(), 6, 13); // 13 de julio
+        
+        if (currentDate > targetDate) {
+            targetDate.setFullYear(currentDate.getFullYear() + 1);
+        }
+        
+        const timeDiff = targetDate - currentDate;
+        const daysRemaining = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        
+        document.addEventListener('keydown', function(e) {
+            // Código Konami parcial: arriba, arriba, abajo, abajo
+            if (e.key === 'ArrowUp' && e.key === 'ArrowUp' && e.key === 'ArrowDown' && e.key === 'ArrowDown') {
+                revealSecret(`${daysRemaining} días para que las aguas se eleven nuevamente...`);
+            }
+        });
+    </script>
+</body>
+</html>
